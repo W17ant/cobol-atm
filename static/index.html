@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COBOL National Bank ATM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/atm.css">
+</head>
+<body>
+
+<div class="atm-wrapper">
+
+  <!-- ════ ATM Machine ════════════════════════════════════════════ -->
+  <div class="atm-machine">
+
+    <!-- Bank branding panel -->
+    <div class="atm-brand-panel">
+      <div class="bank-header">
+        COBOL NATIONAL BANK
+        <div class="bank-logo">EST. 1959 &bull; SECURE &bull; RELIABLE &bull; TRUSTED</div>
+      </div>
+      <div class="atm-clock" id="atmClock">00:00:00</div>
+    </div>
+
+    <!-- Brushed steel fascia -->
+    <div class="atm-fascia">
+
+      <!-- Card reader with animated debit card -->
+      <div class="card-reader-section">
+        <span class="card-slot-label">Card</span>
+        <div class="card-reader-housing">
+          <div class="card-slot-led" id="cardLed"></div>
+          <div class="card-slot" id="cardSlot">
+            <!-- Animated debit card -->
+            <div class="debit-card" id="debitCard" style="opacity:0">
+              <div class="card-chip"></div>
+              <div class="card-contactless">))))</div>
+              <div class="card-number" id="cardNumber">&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull; 0001</div>
+              <div class="card-name">CARD HOLDER</div>
+              <div class="card-bank">COBOL<br>NATIONAL<br>BANK</div>
+            </div>
+          </div>
+        </div>
+        <span class="card-slot-label">Insert &#9654;</span>
+      </div>
+
+      <!-- Screen + side buttons -->
+      <div class="screen-section">
+
+        <!-- Left buttons -->
+        <div class="side-buttons left">
+          <button class="side-btn inactive" id="btnL1"></button>
+          <button class="side-btn inactive" id="btnL2"></button>
+          <button class="side-btn inactive" id="btnL3"></button>
+          <button class="side-btn inactive" id="btnL4"></button>
+        </div>
+
+        <!-- Screen -->
+        <div class="screen-housing">
+          <div class="screen">
+            <!-- Session timeout bar -->
+            <div class="timeout-bar" id="timeoutBar"></div>
+            <div class="screen-content" id="screenContent"></div>
+            <div class="crt-phosphor"></div>
+            <div class="crt-sweep"></div>
+            <div class="crt-glass"></div>
+          </div>
+        </div>
+
+        <!-- Right buttons -->
+        <div class="side-buttons right">
+          <button class="side-btn inactive" id="btnR1"></button>
+          <button class="side-btn inactive" id="btnR2"></button>
+          <button class="side-btn inactive" id="btnR3"></button>
+          <button class="side-btn inactive" id="btnR4"></button>
+        </div>
+
+      </div>
+
+      <!-- PIN pad -->
+      <div class="pinpad-section">
+        <div class="pinpad-grid">
+          <button class="pin-key" data-key="1">1</button>
+          <button class="pin-key" data-key="2">2</button>
+          <button class="pin-key" data-key="3">3</button>
+          <button class="pin-key cancel-key" data-key="cancel">CXL</button>
+
+          <button class="pin-key" data-key="4">4</button>
+          <button class="pin-key" data-key="5">5</button>
+          <button class="pin-key" data-key="6">6</button>
+          <button class="pin-key clear-key" data-key="clear">CLR</button>
+
+          <button class="pin-key" data-key="7">7</button>
+          <button class="pin-key" data-key="8">8</button>
+          <button class="pin-key" data-key="9">9</button>
+          <button class="pin-key enter-key" data-key="enter">ENT</button>
+
+          <button class="pin-key blank-key" aria-hidden="true"></button>
+          <button class="pin-key" data-key="0">0</button>
+          <button class="pin-key blank-key" aria-hidden="true"></button>
+          <button class="pin-key blank-key" aria-hidden="true"></button>
+        </div>
+      </div>
+
+      <!-- Cash dispenser + receipt -->
+      <div class="dispenser-section">
+        <div class="cash-slot-wrap">
+          <div class="cash-slot-housing">
+            <div class="cash-slot" id="cashSlot">
+              <div class="notes-container" id="notesContainer"></div>
+            </div>
+          </div>
+          <!-- Cassette level indicators -->
+          <div class="cassette-indicators" id="cassetteIndicators">
+            <div class="cassette-bar" data-denom="50"><div class="fill full" style="height:100%"></div><span class="denom-label">&pound;50</span></div>
+            <div class="cassette-bar" data-denom="20"><div class="fill full" style="height:100%"></div><span class="denom-label">&pound;20</span></div>
+            <div class="cassette-bar" data-denom="10"><div class="fill full" style="height:100%"></div><span class="denom-label">&pound;10</span></div>
+            <div class="cassette-bar" data-denom="5"><div class="fill full" style="height:100%"></div><span class="denom-label">&pound;5</span></div>
+          </div>
+          <span class="cash-slot-label">Cash Dispenser</span>
+        </div>
+        <div class="receipt-slot-wrap">
+          <div class="receipt-housing">
+            <div class="receipt-slot" id="receiptSlot">
+              <div class="receipt-paper" id="receiptPaper"></div>
+            </div>
+          </div>
+          <span class="receipt-slot-label">Receipt</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Network logos strip -->
+    <div class="atm-info-strip">
+      <span>VISA</span>
+      <div class="info-dot"></div>
+      <span>Mastercard</span>
+      <div class="info-dot"></div>
+      <span>LINK</span>
+      <div class="info-dot"></div>
+      <span>Cirrus</span>
+    </div>
+
+    <!-- Base panel -->
+    <div class="atm-base-panel"></div>
+
+  </div>
+
+</div>
+
+<!-- COBOL Command Visualiser Panel -->
+<div class="cobol-panel" id="cobolPanel">
+  <div class="cobol-panel-toggle" id="cobolToggle">&#9664; COBOL</div>
+  <div class="cobol-panel-header">&#9641; COBOL CORE BANKING</div>
+  <div class="cobol-panel-log" id="cobolLog"></div>
+</div>
+
+<!-- Demo + Controls -->
+<div class="demo-controls">
+  <button class="demo-btn" id="demoBtn">&#9654; DEMO</button>
+  <button class="demo-btn sound-btn" id="soundBtn">&#128264;</button>
+  <button class="demo-btn" id="stackBtn">&#9881; STACK</button>
+</div>
+<div class="demo-progress" id="demoProgress" style="width:0"></div>
+
+<!-- "Show me the stack" Overlay -->
+<div class="stack-overlay" id="stackOverlay">
+  <div class="stack-diagram">
+    <div class="stack-layer">&#128187; HTML / CSS / JavaScript<br><small>ATM Frontend Interface</small></div>
+    <div class="stack-arrow">&#8595;</div>
+    <div class="stack-layer">&#128013; Python Flask Server<br><small>API Bridge &amp; Session Manager</small></div>
+    <div class="stack-arrow">&#8595;</div>
+    <div class="stack-layer">&#9881; GnuCOBOL Engine<br><small>Core Banking &amp; Transaction Processing</small></div>
+    <div class="stack-close">click anywhere to close</div>
+  </div>
+</div>
+
+<!-- Scripts (order matters) -->
+<script src="js/sound.js"></script>
+<script src="js/api.js"></script>
+<script src="js/atm.js"></script>
+
+</body>
+</html>

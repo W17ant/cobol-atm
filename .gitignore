@@ -1,0 +1,22 @@
+# Compiled COBOL binaries
+atm-system
+setup-data
+
+# Data files (generated at runtime)
+ACCOUNTS.DAT
+TRANSLOG.DAT
+AUDITLOG.DAT
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Video script (not for public eyes)
+video-script.txt
+
+# OS
+.DS_Store
+
+# Claude
+.claude/
